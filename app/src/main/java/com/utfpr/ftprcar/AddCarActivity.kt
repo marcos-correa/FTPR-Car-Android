@@ -148,6 +148,12 @@ class AddCarActivity : AppCompatActivity() {
         if (name.isEmpty()) { binding.tilName.error = "Required"; return }
         if (year.isEmpty()) { binding.tilYear.error = "Required"; return }
         if (licence.isEmpty()) { binding.tilLicence.error = "Required"; return }
+        
+        if (selectedImageUri == null) {
+            Toast.makeText(this, "Please pick an image for the car.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        
         binding.tilName.error    = null
         binding.tilYear.error    = null
         binding.tilLicence.error = null

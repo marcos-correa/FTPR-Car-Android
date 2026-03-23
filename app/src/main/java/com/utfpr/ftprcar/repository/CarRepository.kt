@@ -14,4 +14,12 @@ class CarRepository {
     suspend fun addCar(car: Car): Car {
         return api.addCar(car)
     }
+
+    suspend fun updateCar(id: String, car: Car): Car {
+        return api.updateCar(id, car)
+    }
+
+    suspend fun deleteCar(id: String) {
+        api.deleteCar(id)
+    }
 }

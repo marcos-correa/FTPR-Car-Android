@@ -10,6 +10,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.squareup.picasso.Picasso
+import android.content.Intent
 
 class CarDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -58,6 +59,20 @@ class CarDetailActivity : AppCompatActivity(), OnMapReadyCallback {
                 .placeholder(android.R.drawable.ic_menu_gallery)
                 .error(android.R.drawable.ic_menu_gallery)
                 .into(binding.ivDetailImage)
+        }
+
+        binding.btnEdit.setOnClickListener {
+            val intent = Intent(this, EditCarActivity::class.java).apply {
+                val carId = this@CarDetailActivity.intent.getStringExtra(EXTRA_CAR_ID) ?: ""
+                putExtra(EditCarActivity.EXTRA_CAR_ID, carId)
+                putExtra(EditCarActivity.EXTRA_CAR_NAME, carName)
+                putExtra(EditCarActivity.EXTRA_CAR_YEAR, year)
+                putExtra(EditCarActivity.EXTRA_CAR_LICENCE, licence)
+                putExtra(EditCarActivity.EXTRA_CAR_IMAGE, imageUrl)
+                putExtra(EditCarActivity.EXTRA_CAR_LAT, carLat)
+                putExtra(EditCarActivity.EXTRA_CAR_LONG, carLong)
+            }
+            startActivity(intent)
         }
 
         // Initialize map
